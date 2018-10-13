@@ -67,7 +67,24 @@ function movieThis(){
     });
 };
 
-//
+
+//When the command is "concert-this", run this function
+function concertThis(){
+    request("https//rest.bandsintown.com/artists" + input + "/events?app_id=codingbootcamp", function (error, response, body) {
+        if (!error && response.statusCode === 200){
+
+            let json = JSON.parse(body)
+            let time = moment(bands[i].datetime).format('MM/DD/YYYY, h:mm:ss a')
+            
+            console.log("\n* * * * * * * * * * * * * * * * * * " +
+            "\nBand: " + json[i]+
+            "\nName of Venue: " + json[i].venue.name +
+            "\nVenue Location: " + json[i].venue.city +
+            "\nDate of the Event: " + time + 
+            "\n* * * * * * * * * * * * * * * * * * ");
+        };
+    });
+};
 
 
 
