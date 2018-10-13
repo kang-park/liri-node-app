@@ -48,6 +48,11 @@ function spotifySong(){
 
 // When the command is "movie-this", run this function
 function movieThis(){
+
+    if(!title){
+        title = "Mr.Nobody";
+    };
+
     request("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy", function (error, response, body) {
         if (!error && response.statusCode === 200){
 
@@ -68,7 +73,7 @@ function movieThis(){
 };
 
 
-//When the command is "concert-this", run this function
+//When the command is "concert-this", run this function (this is not working)
 function concertThis(){
     request("https//rest.bandsintown.com/artists" + input + "/events?app_id=codingbootcamp", function (error, response, body) {
         if (!error && response.statusCode === 200){
@@ -82,6 +87,19 @@ function concertThis(){
             "\nVenue Location: " + json[i].venue.city +
             "\nDate of the Event: " + time + 
             "\n* * * * * * * * * * * * * * * * * * ");
+        };
+    });
+};
+
+function doIt(){
+    fs.readFile("random.txt", "utf8", function(error, data){
+        if (error) {
+            return console.log(error);
+        } 
+
+        let outArr = data.split(",");
+        for (let i=0; i < outArr.length; i++){
+            console.log(outArr[i]);
         };
     });
 };
